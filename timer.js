@@ -2,7 +2,7 @@ const timerDisplay = document.getElementById('timerDisplay');
 const startBtn = document.getElementById('startBtn');
 const stopBtn = document.getElementById('stopBtn');
 const messageArea = document.getElementById('messageArea');
-const zenChime = document.getElementById('zen_Chime'); // オーディオ要素を取得
+const zenChime = document.getElementById('zenChime'); // オーディオ要素を取得
 
 let timeInSeconds = 5 * 60; // 初期設定（5分）
 let timerInterval;
@@ -67,3 +67,4 @@ stopBtn.addEventListener('click', () => stopTimer(true));
 // 初期表示
 
 timerDisplay.textContent = formatTime(timeInSeconds);
+
