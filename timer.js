@@ -43,6 +43,9 @@ function startTimer() {
     startBtn.disabled = true;
     stopBtn.disabled = false;
     startBtn.textContent = 'セッション実行中...';
+    // タイマー開始時に音を初期化し、即時停止することで、ブラウザに「準備OK」と認識させる
+    zenChime.pause();
+    zenChime.currentTime = 0;
     
     if (timeInSeconds < 5 * 60) {
         messageArea.innerHTML = `<p style="color: blue;">🍵 セッション再開：残り${formatTime(timeInSeconds)}からスタートします。悟りへの道はいつでも再開できます。</p>`;
@@ -67,4 +70,5 @@ stopBtn.addEventListener('click', () => stopTimer(true));
 // 初期表示
 
 timerDisplay.textContent = formatTime(timeInSeconds);
+
 
