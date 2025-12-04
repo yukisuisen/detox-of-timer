@@ -27,12 +27,15 @@ function updateTimer() {
 
 // タイマーを開始させる関数
 function startTimer() {
+    // 【最重要修正】: 既に実行中のタイマーがあれば、必ずここで停止（クリア）します
+    clearInterval(timerInterval); 
+
     startBtn.disabled = true;
     stopBtn.disabled = false;
     startBtn.textContent = 'セッション実行中...';
     postToX.style.display = 'none';
 
-    // 【スマホ対応/音声再生の確実化のための処理】
+    // スマホ対応/音声再生の確実化のための処理
     zenChime.play().catch(error => {
         console.log("Audio playback was prevented. It will play on finish.");
     });
@@ -45,7 +48,7 @@ function startTimer() {
         messageArea.innerHTML = '<p style="color: blue;">🍵 儀式開始：瞑想中…。5分間、只管打坐。</p>';
     }
 
-    // 1秒ごとに updateTimer を実行
+    // 1秒ごとに updateTimer を実行し、timerIntervalにIDを保存
     timerInterval = setInterval(updateTimer, 1000);
 }
 
@@ -54,7 +57,7 @@ function startTimer() {
  * @param {boolean} isManualStop - trueの場合、手動中断（ポーズ）。falseの場合、時間切れ。
  */
 function stopTimer(isManualStop) {
-    // 【重要】この命令がタイマーの繰り返し実行を停止させます
+    // 【重要】手動ストップでも時間切れでも、ここでタイマーの繰り返し実行を停止させます
     clearInterval(timerInterval);
     
     startBtn.disabled = false;
@@ -74,7 +77,7 @@ function stopTimer(isManualStop) {
         timerDisplay.textContent = formatTime(timeInSeconds);
 
         // --- 𝕏ポスト機能の表示 ---
-        const message = "【心のデトックス完了】\n5分間のセッションが終了しました。心が整い、聖域が確保されました。明日も瞑想しましょう。";
+        const message = "【心のデトックス完了】\n5分間のセッションが終了しました。心が整い、聖域が確保されました。今日も日々是好日。";
         const url = encodeURIComponent(window.location.href);
         const text = encodeURIComponent(message + "\n\n#心のデトックス #瞑想 #日々是好日"); 
         
@@ -85,4 +88,3 @@ function stopTimer(isManualStop) {
 
 // 初期表示をセット
 timerDisplay.textContent = formatTime(timeInSeconds);
-
