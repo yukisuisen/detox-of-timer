@@ -17,14 +17,28 @@
             margin: 20px 0;
             color: #4682b4; /* 濃い青 */
         }
-        #startBtn {
+        /* ボタンのスタイル統一 */
+        #startBtn, #stopBtn, #postToX button {
             padding: 15px 30px;
             font-size: 1.2em;
             cursor: pointer;
-            background-color: #3cb371; /* 緑 */
-            color: white;
             border: none;
             border-radius: 8px;
+            margin: 5px; /* ボタン間のスペースを追加 */
+        }
+        #startBtn {
+            background-color: #3cb371; /* 緑 */
+            color: white;
+        }
+        #stopBtn {
+            background-color: #ff6347; /* 赤 */
+            color: white;
+        }
+        /* Xポストボタンのスタイル */
+        #postToX button {
+             background-color: #1DA1F2; /* Xのカラー */
+             color: white;
+             font-weight: bold;
         }
         #messageArea {
             margin-top: 30px;
@@ -39,12 +53,22 @@
     
     <div id="timerDisplay">5:00</div>
     
-    <button id="startBtn">セッション開始（5分）</button>
-    <button id="stopBtn" disabled>セッション中断</button>
-    <div id="messageArea">
-        <p>ボタンを押して、デジタル依存から離れる時間を作りましょう。</p>
+    <div class="controls">
+        <button id="startBtn" onclick="startTimer()">スタート</button>
+        <button id="stopBtn" onclick="stopTimer(true)" disabled>ストップ</button>
     </div>
-        <audio id="zenChime" src="zen_chime.mp3" preload="auto"></audio>
+
+    <a id="postToX" href="#" target="_blank" style="display: none; margin-top: 15px;">
+        <button>セッション完了をXでポスト 𝕏</button>
+    </a>
+
+    <div id="messageArea">
+        <p>最初の「スタート」でタイマーが始まります。今日も心を落ち着かせましょう。</p>
+    </div>
+
+    <audio id="zenChime" src="zen_chime.mp3"></audio> 
+    
     <script src="timer.js"></script>
+
 </body>
 </html>
