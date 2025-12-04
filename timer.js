@@ -5,7 +5,7 @@ const messageArea = document.getElementById('messageArea');
 const zenChime = document.getElementById('zenChime');
 const postToX = document.getElementById('postToX');
 
-let timeInSeconds = 5 * 60; // 初期設定（5分）
+let timeInSeconds = 5; // 初期設定（5分）
 let timerInterval;
 
 // 時間を「分:秒」形式に整形する関数
@@ -42,7 +42,7 @@ function startTimer() {
     zenChime.pause(); 
     zenChime.currentTime = 0;
     
-    if (timeInSeconds < 5 * 60) {
+    if (timeInSeconds < 5) {
         messageArea.innerHTML = `<p style="color: blue;">🍵 セッション再開：残り${formatTime(timeInSeconds)}からスタートします。悟りへの道はいつでも再開できます。</p>`;
     } else {
         messageArea.innerHTML = '<p style="color: blue;">🍵 儀式開始：瞑想中…。5分間、只管打坐。</p>';
@@ -73,7 +73,7 @@ function stopTimer(isManualStop) {
         zenChime.play(); // 効果音を鳴らす
         
         messageArea.innerHTML = '<p style="color: #3cb371; font-weight: bold;">🎉 聖域確保：お疲れ様でした。また、明日も瞑想しましょう。</p>';
-        timeInSeconds = 5 * 60; // 次のスタートのために時間をリセット
+        timeInSeconds = 5; // 次のスタートのために時間をリセット
         timerDisplay.textContent = formatTime(timeInSeconds);
 
         // --- 𝕏ポスト機能の表示 ---
@@ -88,4 +88,5 @@ function stopTimer(isManualStop) {
 
 // 初期表示をセット
 timerDisplay.textContent = formatTime(timeInSeconds);
+
 
