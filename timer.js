@@ -74,7 +74,7 @@ function stopTimer(isManualStop) {
         timerDisplay.textContent = formatTime(timeInSeconds);
 
         // --- 𝕏ポスト機能の表示 ---
-        const message = "【心のデトックス完了】\n5分間のセッションが終了しました。心が整い、聖域が確保されました。今日も日々是好日。";
+        const message = "【心のデトックス完了】\n5分間のセッションが終了しました。心が整い、聖域が確保されました。明日も瞑想しましょう。";
         const url = encodeURIComponent(window.location.href);
         const text = encodeURIComponent(message + "\n\n#心のデトックス #瞑想 #日々是好日"); 
         
@@ -85,3 +85,4 @@ function stopTimer(isManualStop) {
 
 // 初期表示をセット
 timerDisplay.textContent = formatTime(timeInSeconds);
+
